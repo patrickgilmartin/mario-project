@@ -29,9 +29,24 @@ let cursors;
 function create() {
     this.add.image(640, 400, 'background'); 
     
-    mario = this.physics.add.sprite(70, 750, 'mario');
+    mario = this.physics.add.sprite(70, 750, 'mario'); 
     mario.setBounce(0.2);
     mario.setCollideWorldBounds(true);
+
+    
+    this.anims.create({
+        key: 'left',
+        frames: this.anims.generateFrameNumbers('mario', { start: 0, end: 3 }),
+        frameRate: 10,
+        repeat: -1
+    });
+
+    this.anims.create({
+        key: 'right',
+        frames: this.anims.generateFrameNumbers('mario', { start: 0, end: 3 }),
+        frameRate: 10,
+        repeat: -1
+    });
 
     cursors = this.input.keyboard.createCursorKeys();
 }
@@ -39,12 +54,15 @@ function create() {
 function update() {
     if (cursors.left.isDown) {
         mario.setVelocityX(-160);
-        mario.setFlipX(true);
+        mario.anims.play('left', true);
+        mario.setFlipX(true); 
     } else if (cursors.right.isDown) {
         mario.setVelocityX(160);
-        mario.setFlipX(false);
+        mario.anims.play('right', true);
+        mario.setFlipX(false); 
     } else {
         mario.setVelocityX(0);
+        mario.anims.stop();
     }
 
     if (cursors.up.isDown && mario.body.touching.down) {
