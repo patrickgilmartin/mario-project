@@ -29,7 +29,7 @@ let cursors;
 function create() {
     this.add.image(config.width / 2, config.height / 2, 'background').setDisplaySize(config.width, config.height);
     
-    mario = this.physics.add.sprite(70, 718, 'mario');
+    mario = this.physics.add.sprite(70, 318, 'mario');
     mario.setBounce(0.2);
     mario.setCollideWorldBounds(true);
 
