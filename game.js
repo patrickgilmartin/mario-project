@@ -27,7 +27,7 @@ let mario;
 let cursors;
 
 function create() {
-    this.add.image(640, 400, 'background'); 
+    this.add.image(400, 400, 'background'); 
     
     mario = this.physics.add.sprite(70, 750, 'mario'); 
     mario.setBounce(0.2);
