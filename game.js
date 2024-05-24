@@ -1,44 +1,3 @@
-const config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    physics: {
-        default: 'arcade',
-        arcade: {
-            gravity: { y: 300 },
-            debug: false
-        }
-    },
-    scene: {
-        preload: preload,
-        create: create,
-        update: update
-    }
-};
-
-const game = new Phaser.Game(config);
-
-let startGame = true;
-let facingRight = true;
-let gameOn = false;
-let gameOver = false;
-let win = false;
-let pressSpace = false;
-let blackScreen = false;
-
-let walls = [];
-let frame = 0;
-let frame1 = 0;
-let frame2 = 0;
-let count = 7;
-let floors = [];
-
-let gameTime = 220;
-let countdown = 0;
-
-let camera, loadingScreen, marioIcon, loadingScreenDisplayed;
-
-
 function preload() {
     this.load.image('loadingScreen', 'snes-super-mario-world-1-h.png');
     this.load.image('marioIcon', 'MarioIcon.png');
@@ -49,6 +8,9 @@ function preload() {
     this.load.image('cloud', 'Cloud2.png');
     this.load.image('fireb', 'Fireball.png');
     this.load.image('marioBullet', 'Bullet.png');
+    this.load.image('floor', 'Grass.png');
+    this.load.image('marioCoin', 'Coins16.png');
+    this.load.image('goombaSmushed', 'Goomba_smushed2.png');
 }
 
 function create() {
@@ -62,6 +24,7 @@ function create() {
 
     mario = this.physics.add.sprite(70, 520, 'mario').setDisplaySize(30, 60);
 
+    // Cloud setup
     this.add.image(200, 120, 'cloud').setDisplaySize(200, 100);
     this.add.image(900, 270, 'cloud').setDisplaySize(200, 100);
     this.add.image(1400, 120, 'cloud').setDisplaySize(200, 100);
@@ -72,16 +35,43 @@ function create() {
     fireb = this.physics.add.image(4390, 485, 'fireb').setDisplaySize(50, 50);
     fireballs.push(fireb);
 
-    
     marioBullets.push(this.physics.add.image(2400, 515, 'marioBullet').setDisplaySize(45, 45));
     marioBullets.push(this.physics.add.image(3200, 310, 'marioBullet').setDisplaySize(45, 45));
     marioBullets.push(this.physics.add.image(3400, 515, 'marioBullet').setDisplaySize(45, 45));
     marioBullets.push(this.physics.add.image(10000, 460, 'marioBullet').setDisplaySize(45, 45));
     marioBullets.push(this.physics.add.image(12000, 515, 'marioBullet').setDisplaySize(45, 45));
 
+    floors.push(this.add.image(20, 581, 'floor').setDisplaySize(2, 60));
+    floors.push(this.add.image(60, 581, 'floor').setDisplaySize(2, 60));
+    floors.push(this.add.image(100, 581, 'floor').setDisplaySize(2, 60));
+    floors.push(this.add.image(140, 581, 'floor').setDisplaySize(2, 60));
+    floors.push(this.add.image(180, 581, 'floor').setDisplaySize(2, 60));
+    floors.push(this.add.image(220, 581, 'floor').setDisplaySize(2, 60));
+    floors.push(this.add.image(260, 581, 'floor').setDisplaySize(2, 60));
+    floors.push(this.add.image(300, 581, 'floor').setDisplaySize(2, 60));
+    floors.push(this.add.image(340, 581, 'floor').setDisplaySize(2, 60));
+
+    this.add.image(-260, 581, 'floor').setDisplaySize(2, 2);
+    this.add.image(-220, 581, 'floor').setDisplaySize(2, 2);
+    this.add.image(-180, 581, 'floor').setDisplaySize(2, 2);
+    this.add.image(-140, 581, 'floor').setDisplaySize(2, 2);
+    this.add.image(-100, 581, 'floor').setDisplaySize(2, 2);
+    this.add.image(-60, 581, 'floor').setDisplaySize(2, 2);
+    this.add.image(-20, 581, 'floor').setDisplaySize(2, 2);
+
+   
+    let randomX1 = Phaser.Math.Between(50, 800);
+    let randomX2 = Phaser.Math.Between(50, 800);
+    marioCoin = this.physics.add.image(randomX1, 450, 'marioCoin').setDisplaySize(10, 35);
+
+    this.add.image(1000, 535, 'goombaSmushed').setDisplaySize(30, 15);
+
     loadingScreenDisplayed = true;
 
+    
     walls.push(this.add.rectangle(-200, 200, 200, 700, 0x87CEEB));
     walls.push(this.add.rectangle(-200, 200, 200, 700, 0x87CEEB));
 }
-
+function update() {
+    // Placeholder for update logic
+}
