@@ -1,15 +1,20 @@
 {
   "name": "mario-project",
   "version": "1.0.0",
-  "description": "A simple Phaser game deployed on GitHub Pages.",
-  "main": "index.js",
+  "description": "A Phaser-based Mario game",
+  "main": "game.js",
   "scripts": {
-     "scripts": {
-    "build": "webpack --mode production" 
+    "start": "webpack serve --open",
+    "build": "webpack"
   },
+  "author": "Your Name",
+  "license": "ISC",
   "dependencies": {
-    "http-server": "^14.0.0"
+    "phaser": "^3.55.2"
   },
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "webpack": "^5.28.0",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2"
+  }
 }
