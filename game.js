@@ -30,6 +30,12 @@ let frame1 = 0;
 let frame2 = 0;
 let count = 7;
 let floors = [];
+let negativeFloors = [];
+let tubes = [];
+let longBlocks = [];
+let smashers = [];
+let coins = [];
+let obstacles = [];
 
 let gameTime = 220;
 let countdown = 0;
@@ -37,7 +43,10 @@ let countdown = 0;
 let camera, LevelsScreen, LoadingScreen, MarioIcon, titleScreen, background, bowserIcon, mario, fireb;
 let fireballs = [];
 let marioBullets = [];
-let coins = [];
+let powerBoxes = [];
+let healthBar, healthText, scoreDisplay;
+let peach, bowser, shooter, mapImage, pressX;
+let score = 0;
 
 function preload() {
     this.load.image('LevelsScreen', 'LevelsScreen.png');
@@ -63,6 +72,18 @@ function preload() {
     this.load.image('shooter', 'Fireball2.png');
     this.load.image('mapImage', 'MarioMap2.png');
     this.load.image('pressX', 'PressX-PhotoRoom.png-PhotoRoom.png');
+    // Load sounds
+    this.load.audio('smb_jump-small', 'smb_jump-small.wav');
+    this.load.audio('smb_world_clear', 'smb_world_clear.wav');
+    this.load.audio('smb_bowserfalls', 'smb_bowserfalls.wav');
+    this.load.audio('smb_gameover', 'smb_gameover.wav');
+    this.load.audio('smb_coin', 'smb_coin.wav');
+    this.load.audio('smb_powerup', 'smb_powerup.wav');
+    this.load.audio('smb_fireball', 'smb_fireball.wav');
+    this.load.audio('ssbm_bowser_21', 'ssbm_bowser_21.wav');
+    this.load.audio('ssbm_dr_mario_20_mario_14', 'ssbm_dr_mario_20_mario_14.wav');
+    this.load.audio('sm64_thwomp', 'sm64_thwomp.wav');
+    this.load.audio('SuperMarioBros', 'SuperMarioBros.wav');
 }
 
 function create() {
@@ -82,17 +103,14 @@ function create() {
     let marioBullet3 = this.physics.add.image(3000, 515, 'marioBullet').setDisplaySize(45, 45);
     let marioBullet4 = this.physics.add.image(10000, 460, 'marioBullet').setDisplaySize(45, 45);
     let marioBullet5 = this.physics.add.image(12000, 515, 'marioBullet').setDisplaySize(45, 45);
-
     marioBullets.push(marioBullet1, marioBullet2, marioBullet3, marioBullet4, marioBullet5);
 
-    floors = [];
     for (let i = 0; i <= 20; i++) {
         let x = 20 + (i * 40);
         let floor = this.add.image(x, 581, 'floor').setDisplaySize(2, 60);
         floors.push(floor);
     }
 
-    let negativeFloors = [];
     for (let i = -7; i <= -1; i++) {
         let x = -260 + (i * 40);
         let floor = this.add.image(x, 581, 'floor').setDisplaySize(2, 2);
@@ -104,36 +122,32 @@ function create() {
     let marioCoin = this.physics.add.image(randomX1 || randomX2, 500, 'marioCoin').setDisplaySize(10, 35);
     coins.push(marioCoin);
 
-    let bowser = this.physics.add.sprite(4500, 470, 'bowser').setDisplaySize(200, 20);
+    bowser = this.physics.add.sprite(4500, 470, 'bowser').setDisplaySize(200, 20);
 
     let powerBox1 = this.physics.add.image(300, 420, 'powerBox').setDisplaySize(20, 60);
     let powerBox2 = this.physics.add.image(2600, 420, 'powerBox').setDisplaySize(20, 60);
     let powerBox3 = this.physics.add.image(3950, 520, 'powerBox').setDisplaySize(20, 60);
-
-    let powerBoxes = [powerBox1, powerBox2];
+    powerBoxes.push(powerBox1, powerBox2, powerBox3);
 
     let longBlock1 = this.add.image(1415, 450, 'longBlocks').setDisplaySize(100, 25);
     let longBlock2 = this.add.image(1615, 400, 'longBlocks').setDisplaySize(100, 25);
     let longBlock3 = this.add.image(2700, 500, 'longBlocks').setDisplaySize(100, 25);
-
-    let longBlocks = [longBlock1, longBlock2, longBlock3];
+    longBlocks.push(longBlock1, longBlock2, longBlock3);
 
     let smasher1 = this.physics.add.image(3120, 112, 'smasher').setDisplaySize(100, 150);
     let smasher2 = this.physics.add.image(3350, 112, 'smasher').setDisplaySize(100, 150);
     let smasher3 = this.physics.add.image(3580, 112, 'smasher').setDisplaySize(100, 150);
     let smasher4 = this.physics.add.image(3810, 112, 'smasher').setDisplaySize(100, 150);
-
-    let smashers = [smasher1, smasher2, smasher3, smasher4];
+    smashers.push(smasher1, smasher2, smasher3, smasher4);
 
     let tube1 = this.add.image(450, 515, 'tube').setDisplaySize(1, 100);
     let tube2 = this.add.image(600, 515, 'tube').setDisplaySize(1, 100);
     let tube3 = this.add.image(750, 515, 'tube').setDisplaySize(1, 100);
     let tube4 = this.add.image(900, 515, 'tube').setDisplaySize(1, 100);
     let tube5 = this.add.image(900, 515, 'tube').setDisplaySize(1, 100);
+    tubes.push(tube1, tube2, tube3, tube4, tube5);
 
-    let tubes = [tube1, tube2, tube3, tube4, tube5];
-
-    let castle = this.add.image(5200, 388, 'castle').setDisplaySize(200, 350);
+    castle = this.add.image(5200, 388, 'castle').setDisplaySize(200, 350);
 
     let stairBlocks = [];
     for (let i = 0; i < 21; i++) {
@@ -142,41 +156,29 @@ function create() {
         let stairBlock = this.add.image(x, y, 'stairBlock').setDisplaySize(40, 60);
         stairBlocks.push(stairBlock);
     }
-   
+
     peach = this.add.image(5500, 514, 'peach').setDisplaySize(20, 100);
 
-  
     let plant1 = this.physics.add.sprite(1950, 532, 'plant', 11).setDisplaySize(20, 110);
     let plant2 = this.physics.add.sprite(2150, 532, 'plant', 11).setDisplaySize(20, 110);
     let plant3 = this.physics.add.sprite(2350, 532, 'plant', 11).setDisplaySize(20, 110);
 
-    
-    let shooter = this.physics.add.image(3950, -10, 'shooter').setDisplaySize(20, 20);
+    shooter = this.physics.add.image(3950, -10, 'shooter').setDisplaySize(20, 20);
     let shooters = [shooter];
 
-    
-    let mapImage = this.add.image(400, 300, 'mapImage').setDisplaySize(800, 600);
+    mapImage = this.add.image(400, 300, 'mapImage').setDisplaySize(800, 600);
+    pressX = this.add.image(380, 400, 'pressX').setDisplaySize(20, 50);
 
-   
-    let pressX = this.add.image(380, 400, 'pressX').setDisplaySize(20, 50);
+    healthBar = this.add.rectangle(4450, 280, 255, 10, 0xff0000);
+    healthText = this.add.text(4450, 250, 'Health: 300', { fontSize: '30px', fill: '#ff0000' });
 
-    
-    let healthBar = this.add.rectangle(4450, 280, 255, 10, 0xff0000);
+    scoreDisplay = this.add.text(40, 40, score.toString(), { fontSize: '50px', fill: '#000000' });
 
-    
-    let healthText = this.add.text(4450, 250, 'Health: 300', { fontSize: '30px', fill: '#ff0000' });
-
-
-    let score = 0;
-    let scoreDisplay = this.add.text(40, 40, score.toString(), { fontSize: '50px', fill: '#000000' });
-
-    
-    let obstacles = [
-        ...floors, ...negativeFloors, tube1, tube2, tube3, tube4, tube5,
-        ...longBlocks, ...stairBlocks
+    obstacles = [
+        ...floors, ...negativeFloors, ...tubes, ...longBlocks, ...stairBlocks
     ];
 
-    
+    // Sound handling
     this.jumpSound = this.sound.add('smb_jump-small');
     this.winSound = this.sound.add('smb_world_clear');
     this.bowserDeathSound = this.sound.add('smb_bowserfalls');
@@ -188,7 +190,6 @@ function create() {
     this.marioLaughSound = this.sound.add('ssbm_dr_mario_20_mario_14');
     this.smasherSound = this.sound.add('sm64_thwomp');
     this.backgroundSound = this.sound.add('SuperMarioBros');
-
 
     this.gravity = 0.65;
     this.jumpSpeed = 11;
@@ -232,28 +233,6 @@ function create() {
     camera = this.cameras.main;
     camera.setViewport(0, 0, 800, 600);
 }
-
-let circles = {
-    1: { color: 0x800000, radius: 5, position: { x: 148, y: 408 } },
-    2: { color: 0x404040, radius: 6, position: { x: 148, y: 315 } },
-    3: { color: 0x404040, radius: 6.5, position: { x: 148, y: 261 } },
-    4: { color: 0x404040, radius: 5, position: { x: 102, y: 241 } },
-    5: { color: 0x404040, radius: 6, position: { x: 239, y: 186 } },
-    6: { color: 0x404040, radius: 6, position: { x: 285, y: 222 } },
-    7: { color: 0x404040, radius: 6, position: { x: 355, y: 55 } },
-    8: { color: 0x404040, radius: 6, position: { x: 490, y: 90 } },
-    9: { color: 0x404040, radius: 6, position: { x: 560, y: 93 } },
-    10: { color: 0x404040, radius: 6, position: { x: 675, y: 65 } },
-    11: { color: 0x404040, radius: 6, position: { x: 678, y: 180 } },
-    12: { color: 0x404040, radius: 6, position: { x: 679, y: 305 } },
-    13: { color: 0x404040, radius: 5, position: { x: 588, y: 350 } },
-    14: { color: 0x404040, radius: 6, position: { x: 583, y: 406 } },
-    15: { color: 0x404040, radius: 6, position: { x: 514, y: 502 } },
-    16: { color: 0x404040, radius: 6, position: { x: 468, y: 502 } },
-    17: { color: 0x404040, radius: 6, position: { x: 400, y: 502 } },
-    18: { color: 0x404040, radius: 6, position: { x: 308, y: 482 } },
-    19: { color: 0x404040, radius: 9, position: { x: 353, y: 427 } }
-};
 
 function handleMarioXMovement() {
     let isMoving = false;
@@ -454,7 +433,7 @@ function touchingCastle() {
         win = true;
         gameTime = 1;
         mario.setX(5070);
-        mario.setTexture('mario', 3); // Assuming 3 is the last frame
+        mario.setTexture('mario', 3);
         mario.setVelocity(0.5, 0);
         isMoving = false;
         facingRight = false;
@@ -645,8 +624,6 @@ this.time.addEvent({
     callbackScope: this,
     loop: true
 });
-
-
 
 function update() {
 }
