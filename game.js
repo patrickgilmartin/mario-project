@@ -1,56 +1,9 @@
-import Phaser from 'phaser';
+let game;
+let preload, create, update;
 
-const config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    physics: {
-        default: 'arcade',
-        arcade: {
-            gravity: { y: 300 },
-            debug: false
-        }
-    },
-    scene: {
-        preload: preload,
-        create: create,
-        update: update
-    }
-};
-
-const game = new Phaser.Game(config);
-
-let startGame = true;
-let facingRight = true;
-let gameOn = false;
-let gameOver = false;
-let win = false;
-let pressSpace = false;
-let blackScreen = false;
-
-let wall;
-let walls = [];
-let frame = 0;
-let frame1 = 0;
-let frame2 = 0;
-let count = 7;
-let floors = [];
-
-let gameTime = 220;
-let countdown = 0;
-
-let LoadingScreen;
-let MarioIcon;
-let titleScreen;
-let background;
-let bowserIcon;
-let mario;
-let fireb;
-let fireballs = [];
-let marioBullets = [];
-let coins = [];
 
 function preload() {
+    
     this.load.image('LevelsScreen', 'LevelsScreen.png');
     this.load.image('LoadingScreen', 'snes-super-mario-world-1-h.png');
     this.load.image('MarioIcon', 'MarioIcon.png');
