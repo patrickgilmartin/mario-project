@@ -1,7 +1,7 @@
 const config = {
     type: Phaser.AUTO,
-    width: 1280,
-    height: 800,
+    width: 1024,
+    height: 768,
     physics: {
         default: 'arcade',
         arcade: {
@@ -27,13 +27,13 @@ let mario;
 let cursors;
 
 function create() {
-    this.add.image(800, 200, 'background'); 
+    this.add.image(config.width / 2, config.height / 2, 'background').setDisplaySize(config.width, config.height);
     
-    mario = this.physics.add.sprite(70, 750, 'mario'); 
+    mario = this.physics.add.sprite(70, 718, 'mario');
     mario.setBounce(0.2);
     mario.setCollideWorldBounds(true);
 
-    
+  
     this.anims.create({
         key: 'left',
         frames: this.anims.generateFrameNumbers('mario', { start: -1, end: 4 }),
