@@ -36,14 +36,14 @@ function create() {
   
     this.anims.create({
         key: 'left',
-        frames: this.anims.generateFrameNumbers('mario', { start: -1, end: 4 }),
+        frames: this.anims.generateFrameNumbers('mario', { start: 1, end: 4 }),
         frameRate: 10,
         repeat: -1
     });
 
     this.anims.create({
         key: 'right',
-        frames: this.anims.generateFrameNumbers('mario', { start: -1, end: 4 }),
+        frames: this.anims.generateFrameNumbers('mario', { start: 1, end: 4 }),
         frameRate: 10,
         repeat: -1
     });
