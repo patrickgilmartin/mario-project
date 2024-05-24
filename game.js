@@ -19,8 +19,8 @@ const config = {
 const game = new Phaser.Game(config);
 
 function preload() {
-    this.load.image('background', 'mario_game/wp7619435.png');
-    this.load.spritesheet('mario', 'mario_game/Mario.2.png', { frameWidth: 30, frameHeight: 60 });
+    this.load.image('background', 'wp7619435.png'); 
+    this.load.spritesheet('mario', 'Mario.2.png', { frameWidth: 30, frameHeight: 60 });
 
 }
 
