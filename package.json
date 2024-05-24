@@ -1,0 +1,15 @@
+{
+  "name": "mario-project",
+  "version": "1.0.0",
+  "description": "A simple Phaser game deployed on GitHub Pages.",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server ./docs",
+    "build": "echo 'Building the project...' && exit 0"
+  },
+  "dependencies": {
+    "http-server": "^14.0.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
