@@ -4,8 +4,8 @@
   "description": "A simple Phaser game deployed on GitHub Pages.",
   "main": "index.js",
   "scripts": {
-    "start": "http-server ./docs",
-    "build": "echo 'Building the project...' && exit 0"
+     "scripts": {
+    "build": "webpack --mode production" 
   },
   "dependencies": {
     "http-server": "^14.0.0"
