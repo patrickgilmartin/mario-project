@@ -140,17 +140,17 @@ function create() {
     ];
 
     
-    this.jumpSound = this.sound.add('smb_jump-small');
-    this.winSound = this.sound.add('smb_world_clear');
-    this.bowserDeathSound = this.sound.add('smb_bowserfalls');
-    this.gameOverSound = this.sound.add('smb_gameover');
-    this.coinSound = this.sound.add('smb_coin');
-    this.powerBoxSound = this.sound.add('smb_powerup');
-    this.fireballSound = this.sound.add('smb_fireball');
-    this.bFireballSound = this.sound.add('ssbm_bowser_21');
-    this.marioLaughSound = this.sound.add('ssbm_dr_mario_20_mario_14');
-    this.smasherSound = this.sound.add('sm64_thwomp');
-    this.backgroundSound = this.sound.add('SuperMarioBros');
+    this.jumpSound = this.sound.add('src/assets/smb_jump-small');
+    this.winSound = this.sound.add('src/assets/smb_world_clear');
+    this.bowserDeathSound = this.sound.add('src/assets/smb_bowserfalls');
+    this.gameOverSound = this.sound.add('src/assets/smb_gameover');
+    this.coinSound = this.sound.add('src/assets/smb_coin');
+    this.powerBoxSound = this.sound.add('src/assets/smb_powerup');
+    this.fireballSound = this.sound.add('src/assets/smb_fireball');
+    this.bFireballSound = this.sound.add('src/assets/ssbm_bowser_21');
+    this.marioLaughSound = this.sound.add('src/assets/ssbm_dr_mario_20_mario_14');
+    this.smasherSound = this.sound.add('src/assets/sm64_thwomp');
+    this.backgroundSound = this.sound.add('src/assets/SuperMarioBros');
 
 
     this.gravity = 0.65;
