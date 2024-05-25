@@ -3,7 +3,7 @@ let game;
 
 function preload() {
     this.load.image('LevelsScreen', 'LevelsScreen.png');
-    this.load.image('LoadingScreen', 'snes-super-mario-world-1-h.png');
+    this.load.image('LoadingScreen', 'src/assets/snes-super-mario-world-1-h.png');
     this.load.image('MarioIcon', 'MarioIcon.png');
     this.load.image('titleScreen', 'Super-Mario-Bros-Title-Screen.png');
     this.load.image('background', 'wp7619435.png');
