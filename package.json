@@ -7,7 +7,7 @@
     "build": "webpack --mode production"
   },
   "dependencies": {
-    "phaser": "^3.55.2"
+    "phaser": "^3.80.1"
   },
   "devDependencies": {
     "webpack": "^5.91.0",
