@@ -38,7 +38,6 @@ function create() {
 
     mario = this.physics.add.sprite(70, 550, 'mario').setDisplaySize(30, 60);
     fireb = this.physics.add.image(4390, 485, 'fireb').setDisplaySize(50, 50);
-    fireballs.push(fireb);
 
     let marioBullet1 = this.physics.add.image(1700, 515, 'marioBullet').setDisplaySize(45, 45);
     let marioBullet2 = this.physics.add.image(2700, 310, 'marioBullet').setDisplaySize(45, 45);
