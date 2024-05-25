@@ -36,6 +36,17 @@
                 this.load.image("shooter", "src/assets/Fireball2.png");
                 this.load.image("mapImage", "src/assets/MarioMap2.png");
                 this.load.image("pressX", "src/assets/PressX-PhotoRoom.png-PhotoRoom.png");
+                this.load.audio('smb_jump-small', 'src/assets/smb_jump-small.wav');
+                this.load.audio('smb_world_clear', 'src/assets/smb_world_clear.wav');
+                this.load.audio('smb_bowserfalls', 'src/assets/smb_bowserfalls.wav');
+                this.load.audio('smb_gameover', 'src/assets/smb_gameover.wav');
+                this.load.audio('smb_coin', 'src/assets/smb_coin.wav');
+                this.load.audio('smb_powerup', 'src/assets/smb_powerup.wav');
+                this.load.audio('smb_fireball', 'src/assets/smb_fireball.wav');
+                this.load.audio('ssbm_bowser_21', 'src/assets/ssbm_bowser_21.wav');
+                this.load.audio('ssbm_dr_mario_20_mario_14', 'src/assets/ssbm_dr_mario_20_mario_14.wav');
+                this.load.audio('sm64_thwomp', 'src/assets/sm64_thwomp.wav');
+                this.load.audio('SuperMarioBros', 'src/assets/SuperMarioBros-Title-Screen.wav');
             },
             create: function () {
                 const LevelsScreen = this.add.image(400, 300, "LevelsScreen").setDisplaySize(800, 600);
