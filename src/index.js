@@ -1,5 +1,5 @@
 let game;
-let preload, create, update;
+let create, update;
 
 function preload() {
     this.load.image('LevelsScreen', 'LevelsScreen.png');
