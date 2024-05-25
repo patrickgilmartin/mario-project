@@ -28,17 +28,17 @@ function preload() {
     this.load.image('pressX', 'src/assets/PressX-PhotoRoom.png-PhotoRoom.png');
 
     // Load sounds
-    this.load.audio('smb_jump-small', 'smb_jump-small.wav');
-    this.load.audio('smb_world_clear', 'smb_world_clear.wav');
-    this.load.audio('smb_bowserfalls', 'smb_bowserfalls.wav');
-    this.load.audio('smb_gameover', 'smb_gameover.wav');
-    this.load.audio('smb_coin', 'smb_coin.wav');
-    this.load.audio('smb_powerup', 'smb_powerup.wav');
-    this.load.audio('smb_fireball', 'smb_fireball.wav');
-    this.load.audio('ssbm_bowser_21', 'ssbm_bowser_21.wav');
-    this.load.audio('ssbm_dr_mario_20_mario_14', 'ssbm_dr_mario_20_mario_14.wav');
-    this.load.audio('sm64_thwomp', 'sm64_thwomp.wav');
-    this.load.audio('SuperMarioBros', 'SuperMarioBros-Title-Screen.wav');
+    this.load.audio('smb_jump-small', 'src/assets/smb_jump-small.wav');
+    this.load.audio('smb_world_clear', 'src/assets/smb_world_clear.wav');
+    this.load.audio('smb_bowserfalls', 'src/assets/smb_bowserfalls.wav');
+    this.load.audio('smb_gameover', 'src/assets/smb_gameover.wav');
+    this.load.audio('smb_coin', 'src/assets/smb_coin.wav');
+    this.load.audio('smb_powerup', 'src/assets/smb_powerup.wav');
+    this.load.audio('smb_fireball', 'src/assets/smb_fireball.wav');
+    this.load.audio('ssbm_bowser_21', 'src/assets/ssbm_bowser_21.wav');
+    this.load.audio('ssbm_dr_mario_20_mario_14', 'src/assets/ssbm_dr_mario_20_mario_14.wav');
+    this.load.audio('sm64_thwomp', 'src/assets/sm64_thwomp.wav');
+    this.load.audio('SuperMarioBros', 'src/assets/SuperMarioBros-Title-Screen.wav');
 }
 
 function create() {
