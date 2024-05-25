@@ -3,29 +3,29 @@ let LevelsScreen, LoadingScreen, MarioIcon, titleScreen, background, bowserIcon,
 let marioBullets = [], fireballs = [], floors = [], coins = [], powerBoxes = [], longBlocks = [], smashers = [], tubes = [], shooters = [];
 
 function preload() {
-    this.load.image('LevelsScreen', 'LevelsScreen.png');
-    this.load.image('LoadingScreen', 'snes-super-mario-world-1-h.png');
-    this.load.image('MarioIcon', 'MarioIcon.png');
-    this.load.image('titleScreen', 'Super-Mario-Bros-Title-Screen.png');
-    this.load.image('background', 'wp7619435.png');
-    this.load.image('bowserIcon', 'Bowser_back3.png');
-    this.load.spritesheet('mario', 'Mario.2.png', { frameWidth: 30, frameHeight: 60 });
-    this.load.image('fireb', 'Fireball.png');
-    this.load.image('marioBullet', 'Bullet.png');
-    this.load.image('floor', 'BLOCKS.png');
-    this.load.image('marioCoin', 'Coins16.png');
-    this.load.spritesheet('bowser', 'Bowser4.png', { frameWidth: 200, frameHeight: 20 });
-    this.load.image('powerBox', 'Power Box.png');
-    this.load.image('longBlocks', 'long_blocks.png');
-    this.load.image('smasher', 'Thwomp.png');
-    this.load.image('tube', 'TUBE.png');
-    this.load.image('castle', 'castle_final.png');
-    this.load.image('stairBlock', 'BLOCKS.png');
-    this.load.image('peach', 'Peach6.png');
-    this.load.spritesheet('plant', 'PLANTS_NEW.png', { frameWidth: 20, frameHeight: 110 });
-    this.load.image('shooter', 'Fireball2.png');
-    this.load.image('mapImage', 'MarioMap2.png');
-    this.load.image('pressX', 'PressX-PhotoRoom.png-PhotoRoom.png');
+    this.load.image('LevelsScreen', 'assets/LevelsScreen.png');
+    this.load.image('LoadingScreen', 'assets/snes-super-mario-world-1-h.png');
+    this.load.image('MarioIcon', 'assets/MarioIcon.png');
+    this.load.image('titleScreen', 'assets/Super-Mario-Bros-Title-Screen.png');
+    this.load.image('background', 'assets/wp7619435.png');
+    this.load.image('bowserIcon', 'assets/Bowser_back3.png');
+    this.load.spritesheet('mario', 'assets/Mario.2.png', { frameWidth: 30, frameHeight: 60 });
+    this.load.image('fireb', 'assets/Fireball.png');
+    this.load.image('marioBullet', 'assets/Bullet.png');
+    this.load.image('floor', 'assets/BLOCKS.png');
+    this.load.image('marioCoin', 'assets/Coins16.png');
+    this.load.spritesheet('bowser', 'assets/Bowser4.png', { frameWidth: 200, frameHeight: 20 });
+    this.load.image('powerBox', 'assets/Power Box.png');
+    this.load.image('longBlocks', 'assets/long_blocks.png');
+    this.load.image('smasher', 'assets/Thwomp.png');
+    this.load.image('tube', 'assets/TUBE.png');
+    this.load.image('castle', 'assets/castle_final.png');
+    this.load.image('stairBlock', 'assets/BLOCKS.png');
+    this.load.image('peach', 'assets/Peach6.png');
+    this.load.spritesheet('plant', 'assets/PLANTS_NEW.png', { frameWidth: 20, frameHeight: 110 });
+    this.load.image('shooter', 'assets/Fireball2.png');
+    this.load.image('mapImage', 'assets/MarioMap2.png');
+    this.load.image('pressX', 'assets/PressX-PhotoRoom.png-PhotoRoom.png');
 
     // Load sounds
     this.load.audio('smb_jump-small', 'smb_jump-small.wav');
