@@ -132,7 +132,7 @@ function create() {
     let score = 0;
     let scoreDisplay = this.add.text(40, 40, score.toString(), { fontSize: '50px', fill: '#000000' });
 
-    let obstacles = [...floors, tube2, tube3, tube4, tube5, ...longBlocks, castle, ...shooters];
+    let obstacles = [...floors, ...longBlocks, castle, ...shooters];
 
     this.jumpSound = this.sound.add('smb_jump-small');
     this.winSound = this.sound.add('smb_world_clear');
