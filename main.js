@@ -1,6 +1,6 @@
 (() => {
-    let s;
-    const i = {
+    let phaserGame;
+    const gameConfig = {
         type: Phaser.AUTO,
         width: 800,
         height: 600,
@@ -38,32 +38,27 @@
                 this.load.image("pressX", "src/assets/PressX-PhotoRoom.png-PhotoRoom.png");
             },
             create: function () {
-                LevelsScreen = this.add.image(400, 300, "LevelsScreen").setDisplaySize(800, 600);
-                LoadingScreen = this.add.image(400, 310, "LoadingScreen").setDisplaySize(800, 715);
-                MarioIcon = this.add.image(200, 700, "MarioIcon").setDisplaySize(200, 200);
-                titleScreen = this.add.image(400, 200, "titleScreen").setDisplaySize(200, 200);
-                background = this.add.image(400, 200, "background").setDisplaySize(600, 800);
-                bowserIcon = this.add.image(700, 423, "bowserIcon").setDisplaySize(150, 210);
-                mario = this.physics.add.sprite(70, 550, "mario").setDisplaySize(30, 60);
-                fireb = this.physics.add.image(4390, 485, "fireb").setDisplaySize(50, 50);
+                const LevelsScreen = this.add.image(400, 300, "LevelsScreen").setDisplaySize(800, 600);
+                const LoadingScreen = this.add.image(400, 310, "LoadingScreen").setDisplaySize(800, 715);
+                const MarioIcon = this.add.image(200, 700, "MarioIcon").setDisplaySize(200, 200);
+                const titleScreen = this.add.image(400, 200, "titleScreen").setDisplaySize(200, 200);
+                const background = this.add.image(400, 200, "background").setDisplaySize(600, 800);
+                const bowserIcon = this.add.image(700, 423, "bowserIcon").setDisplaySize(150, 210);
+                const mario = this.physics.add.sprite(70, 550, "mario").setDisplaySize(30, 60);
+                const fireb = this.physics.add.image(4390, 485, "fireb").setDisplaySize(50, 50);
                 let s = this.physics.add.image(1700, 515, "marioBullet").setDisplaySize(45, 45);
                 let i = this.physics.add.image(2700, 310, "marioBullet").setDisplaySize(45, 45);
                 let e = this.physics.add.image(3000, 515, "marioBullet").setDisplaySize(45, 45);
                 let a = this.physics.add.image(10000, 460, "marioBullet").setDisplaySize(45, 45);
                 let t = this.physics.add.image(12000, 515, "marioBullet").setDisplaySize(45, 45);
-                marioBullets.push(s, i, e, a, t);
-                floors = [];
-                for (let s = 0; s <= 20; s++) {
-                    let i = 20 + 40 * s;
-                    let e = this.add.image(i, 581, "floor").setDisplaySize(2, 60);
-                    floors.push(e);
+                const marioBullets = [s, i, e, a, t];
+                const floors = [];
+                for (let index = 0; index <= 20; index++) {
+                    let x = 20 + 40 * index;
+                    let floor = this.add.image(x, 581, "floor").setDisplaySize(2, 60);
+                    floors.push(floor);
                 }
-                let o = [];
-                for (let s = -7; s <= -1; s++) {
-                    let i = 40 * s - 260;
-                    let e = this.add.image(i, 581, "floor").setDisplaySize(2, 2);
-                    o.push(e);
-                }
+                const coins = [];
                 let r = Phaser.Math.Between(50, 800);
                 let d = Phaser.Math.Between(50, 800);
                 let l = this.physics.add.image(r || d, 500, "marioCoin").setDisplaySize(10, 35);
@@ -84,14 +79,14 @@
                 this.add.image(750, 515, "tube").setDisplaySize(1, 100);
                 this.add.image(900, 515, "tube").setDisplaySize(1, 100);
                 this.add.image(900, 515, "tube").setDisplaySize(1, 100);
-                let h = (this.add.image(5200, 388, "castle").setDisplaySize(200, 350), []);
-                for (let s = 0; s < 21; s++) {
-                    let i = 4720 + s % 5 * 40 + 40 * Math.floor(s / 5);
-                    let e = 540 - 40 * Math.floor(s / 5);
-                    let a = this.add.image(i, e, "stairBlock").setDisplaySize(40, 60);
-                    h.push(a);
+                let h = [];
+                for (let index = 0; index < 21; index++) {
+                    let x = 4720 + index % 5 * 40 + 40 * Math.floor(index / 5);
+                    let y = 540 - 40 * Math.floor(index / 5);
+                    let block = this.add.image(x, y, "stairBlock").setDisplaySize(40, 60);
+                    h.push(block);
                 }
-                peach = this.add.image(5500, 514, "peach").setDisplaySize(20, 100);
+                const peach = this.add.image(5500, 514, "peach").setDisplaySize(20, 100);
                 this.physics.add.sprite(1950, 532, "plant", 11).setDisplaySize(20, 110);
                 this.physics.add.sprite(2150, 532, "plant", 11).setDisplaySize(20, 110);
                 this.physics.add.sprite(2350, 532, "plant", 11).setDisplaySize(20, 110);
@@ -101,7 +96,6 @@
                 this.add.rectangle(4450, 280, 255, 10, 16711680);
                 this.add.text(4450, 250, "Health: 300", { fontSize: "30px", fill: "#ff0000" });
                 this.add.text(40, 40, (0).toString(), { fontSize: "50px", fill: "#000000" });
-                floors;
                 this.jumpSound = this.sound.add("smb_jump-small");
                 this.winSound = this.sound.add("smb_world_clear");
                 this.bowserDeathSound = this.sound.add("smb_bowserfalls");
@@ -113,7 +107,7 @@
                 this.marioLaughSound = this.sound.add("ssbm_dr_mario_20_mario_14");
                 this.smasherSound = this.sound.add("sm64_thwomp");
                 this.backgroundSound = this.sound.add("SuperMarioBros");
-                this.gravity = .65;
+                this.gravity = 0.65;
                 this.jumpSpeed = 11;
                 this.num = 0;
                 this.smasherSpeed = 2;
@@ -130,11 +124,11 @@
                 this.playBackgroundSound = true;
                 this.circleSettings = [{ color: 8388608, radius: 5, position: { x: 148, y: 408 } }, { color: 4210752, radius: 6, position: { x: 148, y: 315 } }, { color: 4210752, radius: 6.5, position: { x: 148, y: 261 } }, { color: 4210752, radius: 5, position: { x: 102, y: 241 } }, { color: 4210752, radius: 6, position: { x: 239, y: 186 } }, { color: 4210752, radius: 6, position: { x: 285, y: 222 } }, { color: 4210752, radius: 6, position: { x: 355, y: 55 } }, { color: 4210752, radius: 6, position: { x: 490, y: 90 } }, { color: 4210752, radius: 6, position: { x: 560, y: 93 } }, { color: 4210752, radius: 6, position: { x: 675, y: 65 } }, { color: 4210752, radius: 6, position: { x: 678, y: 180 } }, { color: 4210752, radius: 6, position: { x: 679, y: 305 } }, { color: 4210752, radius: 5, position: { x: 588, y: 350 } }, { color: 4210752, radius: 6, position: { x: 583, y: 406 } }, { color: 4210752, radius: 6, position: { x: 514, y: 502 } }, { color: 4210752, radius: 6, position: { x: 468, y: 502 } }, { color: 4210752, radius: 6, position: { x: 400, y: 502 } }, { color: 4210752, radius: 6, position: { x: 308, y: 482 } }, { color: 4210752, radius: 9, position: { x: 353, y: 427 } }];
                 this.circleFillin = { color: 10517845, radius: 5, position: { x: 377, y: 537 } };
-                camera = this.cameras.main;
+                const camera = this.cameras.main;
                 camera.setViewport(0, 0, 800, 600);
             },
             update: function () {}
         }
     };
-    s = new Phaser.Game(i);
+    phaserGame = new Phaser.Game(gameConfig);
 })();
