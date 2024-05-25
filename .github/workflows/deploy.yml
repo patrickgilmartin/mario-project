@@ -29,3 +29,5 @@ jobs:
         with:
           personal_token: ${{ secrets.GH_PAT }}
           publish_dir: ./dist
+          retry_count: 5
+          retry_interval: 60 # Retry every 60 seconds
